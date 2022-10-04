@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-config
+data:
+  credentials: |
+    [default]
+    aws_access_key_id = AKIAUCAXWNZRP2B4I74E
+    aws_secret_access_key = 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
+

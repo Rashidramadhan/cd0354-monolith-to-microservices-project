@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  AWS_BUCKET: rashidproject3bucket
+  AWS_PROFILE: default
+  AWS_REGION: us-east-1
+  JWT_SECRET: testing
+  POSTGRESS_DB: postgres
+  POSTGRESS_HOST: project3database.chugnasxqpu7.us-east-1.rds.amazonaws.com
+  URL: http://localhost:8100
+

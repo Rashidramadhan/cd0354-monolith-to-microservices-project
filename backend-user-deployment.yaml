@@ -14,16 +14,12 @@ spec:
       labels:
         app: backend-user
     spec:
+      restartPolicy: Always
       containers:
       - name: backend-user
         image: rashidramadhan/udagram-api-user:v4
         ports:
           - containerPort: 8080
-        envFrom:
-          - configMapRef:
-              name: env-config
-          - secretRef:
-              name: env-secret
         imagePullPolicy: Always
         resources:
           requests:
@@ -32,4 +28,49 @@ spec:
           limits:
             memory: "4096Mi"
             cpu: "500m"
-      restartPolicy: Always
+        env:
+          - name: URL
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: URL
+          - name: AWS_PROFILE
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: AWS_PROFILE
+          - name: AWS_REGION
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: AWS_REGION
+          - name: AWS_BUCKET
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: AWS_BUCKET
+          - name: JWT_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: JWT_SECRET
+          - name: POSTGRES_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: POSTGRES_HOST
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: env-config
+                key: POSTGRES_DB
+          - name: POSTGRES_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: env-secret
+                key: POSTGRES_USERNAME
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: env-secret
+                key: POSTGRES_PASSWORD
